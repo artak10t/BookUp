@@ -5,11 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class NavbarController
+public class IndexController
 {
     @GetMapping("/")
-    private String renderNavbar(Model model)
+    private String index(Model model)
     {
-        return "navbar";
+        return "index";
     }
 }

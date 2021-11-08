@@ -3,6 +3,7 @@ package com.BaldFrogs.BookUp.Model;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashSet;
 
 public class Listing {
     private String location;
@@ -12,6 +13,24 @@ public class Listing {
     private int maxGuests;
     private ArrayList<Integer> images;
     private String contactInformation;
+
+    public Listing()
+    {
+        availableDays = new ArrayList<>();
+        images = new ArrayList<>();
+    }
+
+    public Listing(String location, String description, float price, int maxGuests, String contactInformation)
+    {
+        this.location = location;
+        this.description = description;
+        this.price = price;
+        this.maxGuests = maxGuests;
+        this.contactInformation = contactInformation;
+
+        availableDays = new ArrayList<>();
+        images = new ArrayList<>();
+    }
 
     public String getLocation() {
         return location;
@@ -35,6 +54,11 @@ public class Listing {
 
     public void setAvailableDays(ArrayList<Date> availableDays) {
         this.availableDays = availableDays;
+    }
+
+    public void addAvailableDay(Date d)
+    {
+        availableDays.add(d);
     }
 
     public float getPrice() {
@@ -61,6 +85,11 @@ public class Listing {
         this.images = images;
     }
 
+    public void addImage(Integer i)
+    {
+        images.add(i);
+    }
+
     public String getContactInformation() {
         return contactInformation;
     }
@@ -68,9 +97,4 @@ public class Listing {
     public void setContactInformation(String contactInformation) {
         this.contactInformation = contactInformation;
     }
-
-    private Listing(String location){
-        this.location = location;
-    }
-
 }
