@@ -1,11 +1,10 @@
 package com.BaldFrogs.BookUp.Model;
 
-import java.lang.reflect.Array;
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedHashSet;
 
 public class Listing {
+    private int id;
     private String location;
     private String description;
     private ArrayList<Date> availableDays;
@@ -96,5 +95,15 @@ public class Listing {
 
     public void setContactInformation(String contactInformation) {
         this.contactInformation = contactInformation;
+    }
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
     }
 }

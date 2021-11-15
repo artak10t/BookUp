@@ -1,14 +1,15 @@
 package com.BaldFrogs.BookUp.Controller;
 
+import com.BaldFrogs.BookUp.Database.Database;
 import com.BaldFrogs.BookUp.Model.Listing;
-import com.BaldFrogs.BookUp.Model.ListingsDatabase;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 
 @Controller
 public class ListingController
@@ -19,8 +20,8 @@ public class ListingController
     @GetMapping("/listing/{id}")
     private String viewListing(Model model, @PathVariable Integer id)
     {
-        Listing l = ListingsDatabase.Query(id);
-        model.addAttribute("id", id);
+        Listing l = Database.QueryListing(id);
+        model.addAttribute("location", l.getLocation());
         model.addAttribute("description", l.getDescription());
 
         if (l.getAvailableDays().size() > 0)
@@ -31,7 +32,6 @@ public class ListingController
 
         model.addAttribute("price", l.getPrice());
         model.addAttribute("maxGuests", l.getMaxGuests());
-
         model.addAttribute("contactInformation", l.getContactInformation());
 
         return "listing";
@@ -52,10 +52,43 @@ public class ListingController
         Add new listing into database and redirect to the listing page
     */
     @PostMapping("/listing/new")
-    public String greetingSubmit(@ModelAttribute Listing listing, Model model)
+    public String newSubmit(@ModelAttribute Listing listing, Model model)
     {
-        ListingsDatabase.Insert(listing);
-        int id = ListingsDatabase.Size() - 1;
+        int id = Database.InsertListing(listing);
         return "redirect:/listing/" + id;
+    }
+
+    /*
+        Edit Listing
+    */
+    @GetMapping("/listing/{id}/edit")
+    private String editListing(Model model, @PathVariable Integer id)
+    {
+        Listing l = Database.QueryListing(id);
+        l.setId(id);
+        model.addAttribute("listing", l);
+        model.addAttribute("availableDays", Arrays.asList(l.getAvailableDays().toArray()));
+        model.addAttribute("images", Arrays.asList(l.getImages().toArray()));
+        return "forms/editListing";
+    }
+
+    /*
+        Delete Listing
+    */
+    @GetMapping("/listing/{id}/edit/delete")
+    private String deleteListing(Model model, @PathVariable Integer id)
+    {
+        Database.DeleteListing(id);
+        return "redirect:/";
+    }
+
+    /*
+        Save listing changes and redirect to the listing page
+    */
+    @PostMapping("/listing/save")
+    public String saveSubmit(@ModelAttribute Listing listing, Model model)
+    {
+        Database.UpdateListing(listing, listing.getId());
+        return "redirect:/listing/" + listing.getId();
     }
 }

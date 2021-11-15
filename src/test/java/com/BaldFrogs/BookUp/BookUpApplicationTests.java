@@ -1,7 +1,7 @@
 package com.BaldFrogs.BookUp;
 
 import com.BaldFrogs.BookUp.Model.Listing;
-import com.BaldFrogs.BookUp.Model.ListingsDatabase;
+import com.BaldFrogs.BookUp.Database.Database;
 import com.BaldFrogs.BookUp.Model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,8 +14,8 @@ class BookUpApplicationTests {
 	void testListingModel()
 	{
 		Listing l = new Listing("Sunnyvale", "2 bedroom", 55, 2, "884883");
-		ListingsDatabase.Insert(l);
-		Listing b = ListingsDatabase.Query(0);
+		Database.InsertListing(l);
+		Listing b = Database.QueryListing(0);
 		Assert.hasText(b.getLocation(), "Sunnyvale");
 	}
 
