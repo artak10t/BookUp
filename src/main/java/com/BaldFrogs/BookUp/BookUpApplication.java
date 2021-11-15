@@ -15,6 +15,6 @@ public class BookUpApplication {
 	public static void main(String[] args)
 	{
 		SpringApplication.run(BookUpApplication.class, args);
-		Database.Init("database.db");
+		Database.Init("src/main/resources/database.db");
 	}
 }
