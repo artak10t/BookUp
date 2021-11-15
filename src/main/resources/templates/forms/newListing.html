@@ -5,6 +5,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/795e3cb908.js" crossorigin="anonymous"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>New Listing</title>
@@ -18,6 +19,9 @@
         <div class="form-group">
             <label for="location">Location</label>
             <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-globe"></i></span>
+                </div>
                 <input type="text" class="form-control" id="location" th:field="*{location}" aria-describedby="locationHelp" placeholder="Enter location" required>
             </div>
             <small id="locationHelp" class="form-text text-muted">Location of the site.</small>
@@ -25,6 +29,9 @@
         <div class="form-group">
             <label for="description">Description</label>
             <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-file-alt"></i></span>
+                </div>
                 <textarea class="form-control" rows="5" id="description" th:field="*{description}" aria-describedby="descriptionHelp" placeholder="Enter description" required></textarea>
             </div>
             <small id="descriptionHelp" class="form-text text-muted">Description of the site, such as count of rooms, amenities, features, dogs allowed or not.</small>
@@ -33,7 +40,7 @@
             <label for="price">Price</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">$</span>
+                    <span class="input-group-text"><i class="fa fa-dollar-sign"></i></span>
                 </div>
                 <input type="number" class="form-control" min="1" id="price" th:field="*{price}" aria-describedby="priceHelp" placeholder="Enter price" required><br/>
             </div>
@@ -42,6 +49,9 @@
         <div class="form-group">
             <label for="maxGuests">Maximum Guests</label>
             <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-bed"></i></span>
+                </div>
                 <input type="number" class="form-control" min="1" id="maxGuests" th:field="*{maxGuests}" aria-describedby="maxGuestsHelp" placeholder="Enter Maximum Guests" required>
             </div>
             <small id="maxGuestsHelp" class="form-text text-muted">Maximum number of guests allowed.</small>
@@ -50,7 +60,7 @@
             <label for="contactInformation">Contact Information</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">@</span>
+                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                 </div>
                 <input type="text" class="form-control" id="contactInformation" th:field="*{contactInformation}" aria-describedby="contactInformationHelp" placeholder="Enter Contact Information" required>
             </div>
