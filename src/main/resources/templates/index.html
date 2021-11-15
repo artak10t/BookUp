@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-
     <script src="https://kit.fontawesome.com/795e3cb908.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -20,31 +19,27 @@
     <title>Home</title>
 </head>
 <body>
-<div th:include="fragments/navbar">
-    <i class="bi bi-people"></i>
-    <ul class="list-group m-3" th:fragment="bookUpListing">
-        <div class="container p-3 row  mx-auto ">
+<div th:include="fragments/navbar"/>
 
-            <div th:each="booking, stat : ${listing}" class="card m-3 " style="width: 20rem;">
-                <img src="https://i.imgur.com/A8eQsll.jpg" class="card-img-top" style="height: 100%" alt="...">
-                <!-- @{${path}} -->
-                <div class="card-body">
-                    <div class="card-block">
-                        <h5 class="card-title" th:text="${title}">title</h5>
-
-                        <div class="row p-3">
-                            <div><i class="fa fa-bed" aria-hidden="true"></i> <span class="txt">3 people</span></div>
-                            <div class="pl-3"><i class="fas fa-dollar-sign"></i> <span class="number">3000</span></div>
-                        </div>
-
-                        <a href="#" class="btn btn-primary btn-lg btn-block ">Read more</a>
+<!-- New Listings -->
+<i class="bi bi-people"></i>
+<ul class="list-group m-3">
+    <div class="container p-3 row  mx-auto ">
+        <div class="card m-3 " style="width: 20rem;">
+            <img th:src="@{https://i.imgur.com/A8eQsll.jpg}" class="card-img-top" style="height: 100%">
+            <div class="card-body">
+                <div class="card-block">
+                    <h5 class="card-title" text="Title">title</h5>
+                    TEST
+                    <div class="row p-3">
+                        <div><i class="fa fa-bed" aria-hidden="true"></i> <span class="txt">3 people</span></div>
+                        <div class="pl-3"><i class="fas fa-dollar-sign"></i> <span class="number">3000</span></div>
                     </div>
+                    <a href="#" class="btn btn-primary btn-lg btn-block ">Read more</a>
                 </div>
             </div>
-
         </div>
-    </ul>
-
-</div>
+    </div>
+</ul>
 </body>
 </html>
