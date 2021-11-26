@@ -21,11 +21,11 @@
 <body>
 <div th:include="fragments/navbar"/>
 
-<!-- List New Listings -->
+<!-- List Listings -->
 <i class="bi bi-people"></i>
 <div class="container p-3 row  mx-auto">
 <ul class="list-group m-3" th:if="${listings != null}" th:each="listing: ${listings}">
-    <div class="card m-3 " style="width: 20rem;">
+    <div class="card m-3 " style="width: 19rem;">
         <img th:src="@{/images/} + ${listing.getImage(0)} + @{.jpg}" class="card-img-top" style="height: 100%">
         <div class="card-body">
             <div class="card-block">
