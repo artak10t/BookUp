@@ -14,9 +14,7 @@ class BookUpApplicationTests {
 	void testListingModel()
 	{
 		Listing l = new Listing("Sunnyvale", "2 bedroom", 55, 2, "884883");
-		Database.InsertListing(l);
-		Listing b = Database.QueryListing(0);
-		Assert.hasText(b.getLocation(), "Sunnyvale");
+		Assert.hasText(l.getLocation(), "Sunnyvale");
 	}
 
 	@Test

@@ -76,6 +76,13 @@ public class Listing {
         this.maxGuests = maxGuests;
     }
 
+    public int getImage(int i) {
+        if(images.size() == 0)
+            return 0;
+
+        return images.get(i);
+    }
+
     public ArrayList<Integer> getImages() {
         return images;
     }

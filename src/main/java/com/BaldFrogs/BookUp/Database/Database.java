@@ -1,6 +1,7 @@
 package com.BaldFrogs.BookUp.Database;
 
 import com.BaldFrogs.BookUp.Model.Listing;
+import com.BaldFrogs.BookUp.Model.User;
 
 import java.io.File;
 import java.sql.*;
@@ -66,6 +67,16 @@ public class Database
                 Statement stmt = connection.createStatement();
                 stmt.execute(sql);
 
+
+                //Users table, password is not encrypted for now
+                //Need additional library for encryption
+                sql = "CREATE TABLE IF NOT EXISTS `users`(" +
+                        "`id` INTEGER PRIMARY KEY, " +
+                        "`username` TEXT NOT NULL UNIQUE," +
+                        "`password` TEXT NOT NULL)";
+                stmt = connection.createStatement();
+                stmt.execute(sql);
+
                 //availableDays reference table
                 sql = "CREATE TABLE IF NOT EXISTS `availableDays`(" +
                         "`id` INTEGER PRIMARY KEY, " +
@@ -88,6 +99,48 @@ public class Database
         catch (SQLException e)
         {
             System.out.println(e.getMessage());
+        }
+    }
+
+    /*
+        Returns the most new 20 listings
+     */
+    public static ArrayList<Listing> NewListings()
+    {
+        String sql = "SELECT * FROM `listings` ORDER BY `id` DESC LIMIT 20";
+        ArrayList<Listing> listings = new ArrayList<>();
+        try
+        {
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            ResultSet result = pstmt.executeQuery();
+
+            while (result.next())
+            {
+                Listing l = new Listing();
+                l.setId(result.getInt(1));
+                l.setLocation(result.getString(2));
+                l.setDescription(result.getString(3));
+                l.setPrice(result.getFloat(4));
+                l.setMaxGuests(result.getInt(5));
+                l.setContactInformation(result.getString(6));
+
+                String sqlImg = "SELECT `id` FROM `images` WHERE `listing_id` = ? LIMIT 12";
+                PreparedStatement getImg = connection.prepareStatement(sqlImg);
+                getImg.setInt(1, l.getId());
+                ResultSet resultImg = getImg.executeQuery();
+
+                if(resultImg.next())
+                    l.addImage(resultImg.getInt(1));
+
+                listings.add(l);
+            }
+
+            return listings;
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 
@@ -165,6 +218,54 @@ public class Database
         catch (SQLException e)
         {
             System.out.println(e.getMessage());
+        }
+    }
+
+    /*
+        Insert Listing into database and return id,
+        in case of failure return -1
+    */
+    public static boolean InsertUser(User u)
+    {
+        String sql = "INSERT INTO users(username, password) VALUES(?, ?)";
+        try
+        {
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, u.getUsername());
+            pstmt.setString(2, u.getPassword());
+            pstmt.executeUpdate();
+
+            return true;
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    /*
+        Insert Listing into database and return id,
+        in case of failure return -1
+    */
+    public static boolean CheckUser(User u)
+    {
+        String sql = "SELECT `id` FROM `users` WHERE `username` = ? AND `password` = ?";
+        try
+        {
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, u.getUsername());
+            pstmt.setString(2, u.getPassword());
+            ResultSet result = pstmt.executeQuery();
+
+            int id = result.getInt(1);
+
+            return true;
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
 
@@ -250,11 +351,6 @@ public class Database
         {
             System.out.println(e.getMessage());
         }
-    }
-
-    public static ArrayList<Listing> NewListings()
-    {
-        return null; //Database;
     }
 
     /*

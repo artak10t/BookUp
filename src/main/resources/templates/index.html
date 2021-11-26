@@ -13,7 +13,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
-
+    <link rel="icon" href="/favicon.ico?v2" type="image/x-icon">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Home</title>
@@ -21,25 +21,25 @@
 <body>
 <div th:include="fragments/navbar"/>
 
-<!-- New Listings -->
+<!-- List New Listings -->
 <i class="bi bi-people"></i>
-<ul class="list-group m-3">
-    <div class="container p-3 row  mx-auto ">
-        <div class="card m-3 " style="width: 20rem;">
-            <img th:src="@{https://i.imgur.com/A8eQsll.jpg}" class="card-img-top" style="height: 100%">
-            <div class="card-body">
-                <div class="card-block">
-                    <h5 class="card-title" text="Title">title</h5>
-                    TEST
-                    <div class="row p-3">
-                        <div><i class="fa fa-bed" aria-hidden="true"></i> <span class="txt">3 people</span></div>
-                        <div class="pl-3"><i class="fas fa-dollar-sign"></i> <span class="number">3000</span></div>
-                    </div>
-                    <a href="#" class="btn btn-primary btn-lg btn-block ">Read more</a>
+<div class="container p-3 row  mx-auto">
+<ul class="list-group m-3" th:if="${listings != null}" th:each="listing: ${listings}">
+    <div class="card m-3 " style="width: 20rem;">
+        <img th:src="@{/images/} + ${listing.getImage(0)} + @{.jpg}" class="card-img-top" style="height: 100%">
+        <div class="card-body">
+            <div class="card-block">
+                <h5 class="card-title" text="Title"><div th:utext="${listing.getLocation()}"/></h5>
+                    <div th:utext="${#strings.abbreviate(listing.getDescription(), 150)}"/>
+                <div class="row p-3">
+                    <div><i class="fa fa-bed" aria-hidden="true"></i><span class="txt" th:utext="' ' + ${listing.getMaxGuests()} + ' ' + @{people}"></span></div>
+                    <div class="pl-3"><i class="fas fa-dollar-sign"></i><span class="number" th:utext="' ' + ${listing.getPrice()} + ' ' + @{per day}"/></span></div>
                 </div>
+                <a th:href="@{listing/} + ${listing.getId()}" class="btn btn-primary btn-lg btn-block ">View</a>
             </div>
         </div>
     </div>
 </ul>
+</div>
 </body>
 </html>

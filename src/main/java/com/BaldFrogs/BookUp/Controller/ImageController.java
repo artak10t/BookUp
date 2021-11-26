@@ -58,7 +58,6 @@ public class ImageController
         {
             File serverFile = new File("src/main/resources/images/" + imageName);
             return Files.readAllBytes(serverFile.toPath());
-
         }
         catch (IOException e)
         {
