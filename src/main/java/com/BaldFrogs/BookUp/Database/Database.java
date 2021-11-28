@@ -103,11 +103,59 @@ public class Database
     }
 
     /*
-        Returns the most new 20 listings
+        Search and find listings, shows only 12 results
+     */
+    public static ArrayList<Listing> Search(String location, Date checkIn, Date checkOut, int guests)
+    {
+        String sql = "SELECT * FROM `listings` LEFT JOIN `availableDays` ON availableDays.listing_id = listings.id " +
+                     "WHERE listings.location LIKE ? AND listings.maxGuests >= ? AND availableDays.date BETWEEN ? AND ? GROUP BY listings.id LIMIT 12";
+        location = "%" + location + "%";
+        ArrayList<Listing> listings = new ArrayList<>();
+        try
+        {
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, location);
+            pstmt.setInt(2, guests);
+            pstmt.setDate(3, checkIn);
+            pstmt.setDate(4, checkOut);
+            ResultSet result = pstmt.executeQuery();
+
+            while (result.next())
+            {
+                Listing l = new Listing();
+                l.setId(result.getInt(1));
+                l.setLocation(result.getString(2));
+                l.setDescription(result.getString(3));
+                l.setPrice(result.getFloat(4));
+                l.setMaxGuests(result.getInt(5));
+                l.setContactInformation(result.getString(6));
+
+                String sqlImg = "SELECT `id` FROM `images` WHERE `listing_id` = ? LIMIT 12";
+                PreparedStatement getImg = connection.prepareStatement(sqlImg);
+                getImg.setInt(1, l.getId());
+                ResultSet resultImg = getImg.executeQuery();
+
+                if(resultImg.next())
+                    l.addImage(resultImg.getInt(1));
+
+                listings.add(l);
+            }
+
+            return listings;
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    /*
+        Returns the most new 12 listings
      */
     public static ArrayList<Listing> NewListings()
     {
-        String sql = "SELECT * FROM `listings` ORDER BY `id` DESC LIMIT 20";
+        String sql = "SELECT * FROM `listings` ORDER BY `id` DESC LIMIT 12";
         ArrayList<Listing> listings = new ArrayList<>();
         try
         {
@@ -124,7 +172,7 @@ public class Database
                 l.setMaxGuests(result.getInt(5));
                 l.setContactInformation(result.getString(6));
 
-                String sqlImg = "SELECT `id` FROM `images` WHERE `listing_id` = ? LIMIT 12";
+                String sqlImg = "SELECT `id` FROM `images` WHERE `listing_id` = ? LIMIT 1";
                 PreparedStatement getImg = connection.prepareStatement(sqlImg);
                 getImg.setInt(1, l.getId());
                 ResultSet resultImg = getImg.executeQuery();

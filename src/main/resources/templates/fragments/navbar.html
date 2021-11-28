@@ -9,12 +9,12 @@
         </button>
 
         <!-- Search bar form -->
-        <form class="form-inline my-2 my-lg-0">
+        <form th:action="@{/search/}" class="form-inline my-2 my-lg-0">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Location">
-                <input type="date" class="form-control" placeholder="Check-in">
-                <input type="date" class="form-control" placeholder="Check-out">
-                <input type="number" class="form-control" min="1" placeholder="Guests">
+                <input type="text" th:value="${location}" minlength="3" name="location" class="form-control" placeholder="Location" required>
+                <input type="date" th:value="${checkIn}" name="check-in" class="form-control" placeholder="Check-in" required>
+                <input type="date" th:value="${checkOut}" name="check-out" class="form-control" placeholder="Check-out" required>
+                <input type="number" th:value="${guests}" name="guests" class="form-control" min="1" placeholder="Guests" required>
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </div>
         </form>

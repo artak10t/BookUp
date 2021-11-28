@@ -35,7 +35,7 @@
                     <div><i class="fa fa-bed" aria-hidden="true"></i><span class="txt" th:utext="' ' + ${listing.getMaxGuests()} + ' ' + @{people}"></span></div>
                     <div class="pl-3"><i class="fas fa-dollar-sign"></i><span class="number" th:utext="' ' + ${listing.getPrice()} + ' ' + @{per day}"/></span></div>
                 </div>
-                <a th:href="@{listing/} + ${listing.getId()}" class="btn btn-primary btn-lg btn-block ">View</a>
+                <a th:href="@{/listing/} + ${listing.getId()}" class="btn btn-primary btn-lg btn-block ">View</a>
             </div>
         </div>
     </div>
