@@ -16,7 +16,7 @@ public class AvailableDaysController
         Add new day into listing
     */
     @GetMapping("/listing/{id}/edit/newDay")
-    private String editListingNewDay(Model model, @PathVariable Integer id, @RequestParam("date") Date date)
+    public String editListingNewDay(Model model, @PathVariable Integer id, @RequestParam("date") Date date)
     {
         Database.InsertAvailableDay(id, date);
         return "redirect:/listing/" + id + "/edit";
@@ -26,7 +26,7 @@ public class AvailableDaysController
         Remove day from listing
     */
     @GetMapping("/listing/{id}/edit/removeDay/{date}")
-    private String editListingRemoveDay(Model model, @PathVariable Integer id, @PathVariable Date date)
+    public String editListingRemoveDay(Model model, @PathVariable Integer id, @PathVariable Date date)
     {
         Database.DeleteAvailableDay(id, date);
         return "redirect:/listing/" + id + "/edit";

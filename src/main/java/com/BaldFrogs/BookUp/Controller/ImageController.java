@@ -18,7 +18,7 @@ public class ImageController
         Upload new image
     */
     @PostMapping("/listing/{id}/edit/uploadImage")
-    private String editListingUploadImage(Model model, @PathVariable Integer id, @RequestParam("img") MultipartFile multipartFile)
+    public String editListingUploadImage(Model model, @PathVariable Integer id, @RequestParam("img") MultipartFile multipartFile)
     {
         String uploadDir = "src/main/resources/images/";
         String type = multipartFile.getContentType();
@@ -44,7 +44,7 @@ public class ImageController
         Remove image
     */
     @GetMapping("/listing/{id}/edit/removeImage/{img_id}")
-    private String editListingRemoveImage(Model model, @PathVariable Integer id, @PathVariable Integer img_id)
+    public String editListingRemoveImage(Model model, @PathVariable Integer id, @PathVariable Integer img_id)
     {
         Database.DeleteImage(img_id);
         return "redirect:/listing/" + id + "/edit";

@@ -17,7 +17,7 @@ public class IndexController
 {
     //Show new created listings on home page
     @GetMapping("/")
-    private String index(Model model)
+    public String index(Model model)
     {
         ArrayList<Listing> listings = Database.NewListings();
         if(listings != null && listings.size() > 0)
@@ -33,7 +33,7 @@ public class IndexController
 
     //Search for a listings
     @GetMapping("/search")
-    private String search(
+    public String search(
                           Model model, @RequestParam("location") String location,
                                        @RequestParam("check-in") Date checkIn,
                                        @RequestParam("check-out") Date checkOut,

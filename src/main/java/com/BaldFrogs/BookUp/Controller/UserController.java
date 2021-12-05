@@ -15,7 +15,7 @@ public class UserController
         Try to login
     */
     @PostMapping("/login")
-    private String renderLogin(Model model, @RequestParam(name = "username", required = false) String username, @RequestParam(name = "password", required = false) String password)
+    public String Login(Model model, @RequestParam(name = "username", required = false) String username, @RequestParam(name = "password", required = false) String password)
     {
         User u = new User(username, password);
         boolean b = Database.CheckUser(u);
@@ -31,7 +31,7 @@ public class UserController
         Open login page
     */
     @GetMapping("/login")
-    private String renderLogin(Model model)
+    public String RenderLogin(Model model)
     {
         return "login";
     }
@@ -40,7 +40,7 @@ public class UserController
         Logout
     */
     @GetMapping("/logout")
-    private String logout(Model model)
+    public String Logout(Model model)
     {
         return "redirect:/";
     }
@@ -49,7 +49,7 @@ public class UserController
         Try register
     */
     @PostMapping("/register")
-    private String renderRegister(Model model, @RequestParam(name = "username", required = false) String username, @RequestParam(name = "password", required = false) String password)
+    public String Register(Model model, @RequestParam(name = "username", required = false) String username, @RequestParam(name = "password", required = false) String password)
     {
         User u = new User(username, password);
         boolean b = Database.InsertUser(u);
@@ -65,7 +65,7 @@ public class UserController
         Open register page
     */
     @GetMapping("/register")
-    private String renderRegister(Model model)
+    public String RenderRegister(Model model)
     {
         return "register";
     }

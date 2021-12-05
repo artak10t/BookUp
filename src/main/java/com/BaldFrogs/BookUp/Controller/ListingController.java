@@ -18,7 +18,7 @@ public class ListingController
         GetRequest for rendering listing
      */
     @GetMapping("/listing/{id}")
-    private String viewListing(Model model, @PathVariable Integer id)
+    public String viewListing(Model model, @PathVariable Integer id)
     {
         Listing l = Database.QueryListing(id);
         model.addAttribute("location", l.getLocation());
@@ -41,7 +41,7 @@ public class ListingController
         New listing form page
      */
     @GetMapping("/listing")
-    private String viewListing(Model model)
+    public String viewListing(Model model)
     {
         Listing l = new Listing();
         model.addAttribute("listing", l);
@@ -62,7 +62,7 @@ public class ListingController
         Edit Listing
     */
     @GetMapping("/listing/{id}/edit")
-    private String editListing(Model model, @PathVariable Integer id)
+    public String editListing(Model model, @PathVariable Integer id)
     {
         Listing l = Database.QueryListing(id);
         l.setId(id);
@@ -76,7 +76,7 @@ public class ListingController
         Delete Listing
     */
     @GetMapping("/listing/{id}/edit/delete")
-    private String deleteListing(Model model, @PathVariable Integer id)
+    public String deleteListing(Model model, @PathVariable Integer id)
     {
         Database.DeleteListing(id);
         return "redirect:/";
