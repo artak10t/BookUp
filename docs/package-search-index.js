@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.BaldFrogs.BookUp"},{"l":"com.BaldFrogs.BookUp.Controller"},{"l":"com.BaldFrogs.BookUp.Database"},{"l":"com.BaldFrogs.BookUp.Model"},{"l":"com.BaldFrogs.BookUp.Utils"}];updateSearchResults();
