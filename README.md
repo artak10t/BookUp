@@ -1,5 +1,6 @@
 # BookUp
 ![BookUp](bookUp.png)
+---
 BookUp is a reservation platform for people who want go on vacations and can't find places to stay. Allows to rent and list houses. 
 
 # MVC
