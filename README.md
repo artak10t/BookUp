@@ -1,6 +1,6 @@
 # BookUp
 ![BookUp](bookUp.png)
-BookUp is a website where users can list their homes and search for vacation houses to rent. 
+BookUp is a reservation platform for people who want go on vacations and can't find places to stay. Allows to rent and list houses. 
 
 # MVC
 A perfectly reusable MVC software architecture allows to easily modify and change listings models.  
