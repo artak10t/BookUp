@@ -3,6 +3,12 @@
 ---
 BookUp is a reservation platform for people who want go on vacations and can't find places to stay. Allows to rent and list houses. 
 
+# Briefly, it has
+  * Ability for client/customer to register and login/logout.
+  * Be able to delete account/listings.
+  * Ability to search for listings by location/available dates/number of guests.
+  * Ability to book the listing.
+
 # MVC
 A perfectly reusable MVC software architecture allows to easily modify and change listings models.  
 **Models and Controllers can be found by *src/main/java/com/BaldFrogs/BookUp* while Views by *src/main/resources/templates***
