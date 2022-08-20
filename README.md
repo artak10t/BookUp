@@ -8,9 +8,9 @@ A perfectly reusable MVC software architecture allows to easily modify and chang
 * Ability to book the listing.
   
 ## Getting Started
-Full documentation is available by https://artak10t.github.io/BookUp/
-
 * Required dependencies include: Spring Boot, SQLite, Thymeleaf.
 * Compile application using JDK 11+ and run.
+
+## [Documentation](https://artak10t.github.io/BookUp/)
 
 ![BookUp](bookUp.png)
