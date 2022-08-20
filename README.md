@@ -11,6 +11,6 @@ A perfectly reusable MVC software architecture allows to easily modify and chang
 * Required dependencies include: Spring Boot, SQLite, Thymeleaf.
 * Compile application using JDK 11+ and run.
 
-## [Documentation](https://artak10t.github.io/BookUp/)
-
 ![BookUp](bookUp.png)
+
+## [Documentation](https://artak10t.github.io/BookUp/)
